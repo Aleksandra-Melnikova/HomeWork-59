@@ -47,7 +47,7 @@ const AddFilmForm:React.FC<Props> = ({addNewFilm}) => {
       <form onSubmit={onSubmit}>
         <div className='row align-items-center justify-content-between'>
         <div className="form-group mb-2 col-10">
-          <label htmlFor="name">New film:</label>
+          <label htmlFor="name" className='fs-3'>New film:</label>
           <input
             type="text"
             onChange={changeMovie}

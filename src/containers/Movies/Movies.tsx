@@ -27,11 +27,6 @@ const Movies = () => {
     setMovies((prevState) => [...prevState, newFilm]);
   };
   const deleteMovie = (id: string) => {
-    // const index = movies.findIndex(movie => movie.id === id);
-    // console.log(index);
-    //
-    // const copyMovies = movies.splice(index, 1);
-    // console.log(copyMovies);
     const copyMovies = movies.filter((person) => person.id !== id);
  console.log(copyMovies);
     setMovies(copyMovies);
@@ -51,9 +46,13 @@ const Movies = () => {
       <AddFilmForm addNewFilm={addNewFilm}/>
         <h5 className='mt-3 mb-3 '>To watch list:</h5>
 
-      {movies.map((movie) => (
-        <FilmInput key={movie.id} name={movie.name} id={movie.id} onChange={(e) => changeMovie(e, movie.id)} onDelete={() => deleteMovie(movie.id)} />
-      ))}
+        {movies.length === 0?<div className='text-center mt-5'>To watch list is empty, add new movie!</div>:
+          <>{movies.map((movie) => (
+            <FilmInput key={movie.id} name={movie.name} onChange={(e) => changeMovie(e, movie.id)} onDelete={() => deleteMovie(movie.id)} />
+          ))}</>
+
+      }
+
 
       </div>
     </div>
