@@ -1,34 +1,32 @@
-import { useEffect, useState } from 'react';
-
-// interface JokesState {
-//   textJoke: string;
-// }
+import { useEffect, useState } from "react";
+import ButtonGetJoke from "../../components/ButtonGetJoke/ButtonGetJoke.tsx";
+import JokeBlock from "../../components/JokeBlock/JokeBlock.tsx";
 
 const Jokes = () => {
-  const [joke, setJoke] = useState<string[]>(['']);
+  const [joke, setJoke] = useState<string>("");
   const [click, setClick] = useState<boolean>(true);
-  const url ='https://api.chucknorris.io/jokes/random';
+  const url = "https://api.chucknorris.io/jokes/random";
 
-  useEffect(()=>{
-    const fetchData = async ()=>{
+  useEffect(() => {
+    const fetchData = async () => {
       const response = await fetch(url);
-      if(response.ok){
+      if (response.ok) {
         const joke = await response.json();
         setJoke(joke.value);
       }
-
     };
     void fetchData();
-
-  },[click]);
-  const AddNewJoke = () =>{
-  setClick(!click);
-  }
+  }, [click]);
+  const AddNewJoke = () => {
+    setClick(!click);
+  };
   return (
     <>
-      <button type='button' className='btn btn-primary ms-auto me-auto mt-5' onClick={AddNewJoke}>Get new joke</button>
-      <div className='text-center m-auto w-50 h-auto p-4 bg-info rounded-3'>
-        <p className='fs-5'>{joke}</p>
+      <div>
+        <div className="row h-50 mt-5 flex-column justify-content-between align-items-center">
+          <ButtonGetJoke AddNewJoke={AddNewJoke} />
+          <JokeBlock joke={joke} />
+        </div>
       </div>
     </>
   );

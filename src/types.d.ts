@@ -5,5 +5,4 @@ export interface IMovie {
 
 export interface IMovieMutation {
   name: string;
-
 }
