@@ -6,7 +6,6 @@ interface ButtonGetJokeProps {
 
 const ButtonGetJoke: React.FC<ButtonGetJokeProps> = React.memo(
   ({ AddNewJoke }) => {
-    console.log("button render");
     return (
       <div>
         <button
@@ -17,7 +16,11 @@ const ButtonGetJoke: React.FC<ButtonGetJokeProps> = React.memo(
           Get new joke
         </button>
       </div>
-    );
+    )
+  },
+  () => {
+    return true
   },
 );
+
 export default ButtonGetJoke;

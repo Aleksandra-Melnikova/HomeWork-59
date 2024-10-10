@@ -1,6 +1,6 @@
 import AddFilmForm from "../../components/AddFilmForm/AddFilmForm.tsx";
 import { IMovie } from "../../types";
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import FilmInput from "../../components/FilmInput/FilmInput.tsx";
 
 const Movies = () => {
@@ -12,9 +12,7 @@ const Movies = () => {
     { id: "2", name: "Film2" },
     { id: "3", name: "Film3" },
   ]);
-  useEffect(() => {
-    console.log('UseEffectMovie - mount');
-  }, []);
+
   const addNewFilm = (newFilm: IMovie) => {
     setMovies((prevState) => [...prevState, newFilm]);
   };
@@ -45,7 +43,7 @@ const Movies = () => {
   const handleDelete = (id: string) => () => {
     deleteMovie(id);
   };
-console.log('movie Render')
+
   return (
     <div className="container">
       <div className="w-75 mt-5 ms-auto me-auto">
