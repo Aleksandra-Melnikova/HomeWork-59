@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from 'react';
 interface FilmInputProps {
   name: string;
   onDelete: React.MouseEventHandler;
@@ -7,6 +8,10 @@ interface FilmInputProps {
 
 const FilmInput: React.FC<FilmInputProps> = React.memo(
   ({ name, onDelete, onChange }) => {
+    useEffect(() => {
+      console.log('UseEffectFilmInput- mount');
+    }, []);
+    console.log('FilmInput render');
     return (
       <div className="text-center row justify-content-between mb-3 ">
         <input
