@@ -8,7 +8,6 @@ interface FilmInputProps {
 
 const FilmInput: React.FC<FilmInputProps> = React.memo(
   ({ name, onDelete, onChange }) => {
-
     return (
       <div className="text-center row justify-content-between mb-3 ">
         <input

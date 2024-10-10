@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ButtonGetJokeProps {
-  AddNewJoke(): void;
+  AddNewJoke: React.MouseEventHandler;
 }
 
 const ButtonGetJoke: React.FC<ButtonGetJokeProps> = React.memo(
@@ -16,10 +16,10 @@ const ButtonGetJoke: React.FC<ButtonGetJokeProps> = React.memo(
           Get new joke
         </button>
       </div>
-    )
+    );
   },
   () => {
-    return true
+    return true;
   },
 );
 

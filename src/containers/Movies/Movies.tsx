@@ -1,12 +1,9 @@
 import AddFilmForm from "../../components/AddFilmForm/AddFilmForm.tsx";
 import { IMovie } from "../../types";
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 import FilmInput from "../../components/FilmInput/FilmInput.tsx";
 
 const Movies = () => {
-
-
-
   const [movies, setMovies] = useState<IMovie[]>([
     { id: "1", name: "Film1" },
     { id: "2", name: "Film2" },
@@ -17,28 +14,22 @@ const Movies = () => {
     setMovies((prevState) => [...prevState, newFilm]);
   };
 
-  const deleteMovie = useCallback(
-    (id: string) => {
-      setMovies((movies) => movies.filter((movie) => movie.id !== id));
-    },
-    [],
-  );
+  const deleteMovie = useCallback((id: string) => {
+    setMovies((movies) => movies.filter((movie) => movie.id !== id));
+  }, []);
 
-  const changeMovie = useCallback(
-    (id: string, newValue: string) => {
-      setMovies((movies) =>
-        movies.map((movie) =>
-          movie.id === id ? { ...movie, name: newValue } : movie
-        )
-      );
-    },
-    []
-  );
+  const changeMovie = useCallback((id: string, newValue: string) => {
+    setMovies((movies) =>
+      movies.map((movie) =>
+        movie.id === id ? { ...movie, name: newValue } : movie,
+      ),
+    );
+  }, []);
 
-
-  const handleChange = (id: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeMovie(id, e.target.value);
-  };
+  const handleChange =
+    (id: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      changeMovie(id, e.target.value);
+    };
 
   const handleDelete = (id: string) => () => {
     deleteMovie(id);
@@ -69,4 +60,3 @@ const Movies = () => {
 };
 
 export default Movies;
-

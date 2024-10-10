@@ -3,29 +3,36 @@ import ButtonGetJoke from "../../components/ButtonGetJoke/ButtonGetJoke.tsx";
 import JokeBlock from "../../components/JokeBlock/JokeBlock.tsx";
 
 const Jokes = () => {
-  const [joke, setJoke] = useState<string>("");
+  const [jokes, setJokes] = useState<string[]>([]);
   const [click, setClick] = useState<boolean>(true);
-  const url = "https://api.chucknorris.io/jokes/random";
 
   useEffect(() => {
+    const url: string = "https://api.chucknorris.io/jokes/random";
+    const urlArray: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      urlArray.push(url);
+    }
     const fetchData = async () => {
-      const response = await fetch(url);
-      if (response.ok) {
-        const joke = await response.json();
-        setJoke(joke.value);
-      }
+      const result = await Promise.all(urlArray.map((url) => fetch(url))).then(
+        (result) => Promise.all(result.map((r) => r.json())),
+      );
+      setJokes(result.map((r) => r.value));
     };
     void fetchData();
   }, [click]);
+
   const AddNewJoke = () => {
-    setClick(!click);
+    setClick((prevState) => !prevState);
   };
+
   return (
     <>
       <div>
         <div className="row h-50 mt-5 flex-column justify-content-between align-items-center">
           <ButtonGetJoke AddNewJoke={AddNewJoke} />
-          <JokeBlock joke={joke} />
+          {jokes.map((joke) => (
+            <JokeBlock key={joke} joke={joke} />
+          ))}
         </div>
       </div>
     </>
