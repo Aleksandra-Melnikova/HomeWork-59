@@ -3,7 +3,7 @@ import * as React from "react";
 interface FilmInputProps {
   name: string;
   onDelete: React.MouseEventHandler;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: (id: string, e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const FilmInput: React.FC<FilmInputProps> = React.memo(
@@ -11,7 +11,7 @@ const FilmInput: React.FC<FilmInputProps> = React.memo(
     return (
       <div className="text-center row justify-content-between mb-3 ">
         <input
-          onChange={onChange}
+          onChange={()=>onChange}
           className="col-10 ms-3 mb-2 p-2"
           value={name}
         />

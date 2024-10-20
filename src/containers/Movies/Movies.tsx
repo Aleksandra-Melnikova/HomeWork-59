@@ -49,7 +49,7 @@ const Movies = () => {
             <FilmInput
               key={movie.id}
               name={movie.name}
-              onChange={handleChange(movie.id)}
+              onChange={(e) => handleChange(movie.id) }
               onDelete={handleDelete(movie.id)}
             />
           ))
